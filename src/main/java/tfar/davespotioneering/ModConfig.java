@@ -46,16 +46,16 @@ public class ModConfig {
             builder.push("general");
             milk = builder.define("milk",true);
             gauntlet_cooldown = builder.defineInRange("gauntlet_cooldown", 600, 1, Integer.MAX_VALUE);
-            coat_tools = builder.define("coat_tools",true);
+            coat_tools = builder.define("coat_tools",false);
             spike_food = builder.define("spike_food",true);
             coat_all = builder.define("coat_anything",false);
-            show_spiked_food = builder.define("show_spiked_food",true);
+            show_spiked_food = builder.define("show_spiked_food",false);
             gauntlet_cooldown = builder.defineInRange("gauntlet_cooldown", 600, 1, Integer.MAX_VALUE);
 
             potion_switch_cooldown = builder.comment("Cooldown in ticks when switching to potions").translation(pot_switch_key)
-                    .defineInRange("potion_switch_cooldown", 30, 0, 20000);
+                    .defineInRange("potion_switch_cooldown", 0, 0, 0);
             potion_throw_cooldown = builder.comment("Cooldown in ticks when throwing potions").translation(pot_throw_key)
-                    .defineInRange("potion_throw_cooldown", 30, 0, 20000);
+                    .defineInRange("potion_throw_cooldown", 0, 0, 0);
             coat_all = builder.comment("Allows all items to be coated").define("coat_all",false);
             coating_uses = builder.comment("Number of uses per coating").defineInRange("coating_uses",25,1,Integer.MAX_VALUE);
 
