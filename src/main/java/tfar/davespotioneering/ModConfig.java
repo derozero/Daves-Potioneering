@@ -59,9 +59,9 @@ public class ModConfig {
             coat_all = builder.comment("Allows all items to be coated").define("coat_all",false);
             coating_uses = builder.comment("Number of uses per coating").defineInRange("coating_uses",25,1,Integer.MAX_VALUE);
 
-            potion_stack_size = builder.defineInRange("potion_stack_size", 16, 1, 64);
-            splash_potion_stack_size = builder.defineInRange("splash_potion_stack_size", 4, 1, 64);
-            lingering_potion_stack_size = builder.defineInRange("lingering_potion_stack_size", 4, 1, 64);
+            potion_stack_size = builder.defineInRange("potion_stack_size", 1, 1, 64);
+            splash_potion_stack_size = builder.defineInRange("splash_potion_stack_size", 1, 1, 64);
+            lingering_potion_stack_size = builder.defineInRange("lingering_potion_stack_size", 1, 1, 64);
 
 
             builder.pop();
