@@ -37,9 +37,7 @@ import tfar.davespotioneering.blockentity.ReinforcedCauldronBlockEntity;
 import tfar.davespotioneering.client.particle.FastDripParticle;
 import tfar.davespotioneering.client.particle.TintedSplashParticle;
 import tfar.davespotioneering.init.*;
-import tfar.davespotioneering.item.GauntletItem;
 import tfar.davespotioneering.mixin.ParticleManagerAccess;
-import tfar.davespotioneering.net.C2SGauntletCyclePacket;
 import tfar.davespotioneering.net.PacketHandler;
 
 public class ClientEvents {
