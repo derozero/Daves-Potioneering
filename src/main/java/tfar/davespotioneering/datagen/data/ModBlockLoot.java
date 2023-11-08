@@ -14,9 +14,6 @@ public class ModBlockLoot extends BlockLoot {
     @Override
     protected void addTables() {
         dropSelf(ModBlocks.REINFORCED_CAULDRON);
-        dropSelf(ModBlocks.COMPOUND_BREWING_STAND);
-        dropSelf(ModBlocks.MAGIC_LECTERN);
-        dropSelf(ModBlocks.POTION_INJECTOR);
         this.dropOther(ModBlocks.REINFORCED_WATER_CAULDRON, ModBlocks.REINFORCED_CAULDRON);
     }
 
