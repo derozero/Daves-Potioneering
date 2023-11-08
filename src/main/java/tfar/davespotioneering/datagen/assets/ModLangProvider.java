@@ -8,14 +8,10 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.common.data.LanguageProvider;
 import org.codehaus.plexus.util.StringUtils;
 import tfar.davespotioneering.DavesPotioneering;
-import tfar.davespotioneering.block.PotionInjectorBlock;
-import tfar.davespotioneering.client.GauntletHUD;
-import tfar.davespotioneering.client.GauntletHUDMovementScreen;
 import tfar.davespotioneering.init.ModBlocks;
 import tfar.davespotioneering.init.ModEffects;
 import tfar.davespotioneering.init.ModItems;
 import tfar.davespotioneering.init.ModPotions;
-import tfar.davespotioneering.item.UmbrellaItem;
 
 public class ModLangProvider extends LanguageProvider {
     public ModLangProvider(DataGenerator gen) {
@@ -26,42 +22,16 @@ public class ModLangProvider extends LanguageProvider {
     protected void addTranslations() {
         addEffect(() -> ModEffects.MILK,"Milk");
         addPotions();
-        add("container.davespotioneering.compound_brewing","Compound Brewing Stand");
-        add(PotionInjectorBlock.TRANS_KEY,"Potion Injector");
-        addBlock(() -> ModBlocks.COMPOUND_BREWING_STAND,"Compound Brewing Stand");
         addBlock(() -> ModBlocks.REINFORCED_CAULDRON,"Reinforced Cauldron");
         addBlock(() -> ModBlocks.REINFORCED_WATER_CAULDRON,"Reinforced Water Cauldron");
-        addBlock(() -> ModBlocks.POTION_INJECTOR,"Potion Injector");
-        addItem(() -> ModItems.POTIONEER_GAUNTLET,getNameFromItem(ModItems.POTIONEER_GAUNTLET));
-        addItem(() -> ModItems.RUDIMENTARY_GAUNTLET,getNameFromItem(ModItems.RUDIMENTARY_GAUNTLET));
-        addItem(() -> ModItems.NETHERITE_GAUNTLET,getNameFromItem(ModItems.NETHERITE_GAUNTLET));
 
-        add("davespotioneering.gui.moveGauntletHUD", "Use your mouse to drag the Gauntlet HUD wherever you would like or use one of these default positions.");
-
-        add(GauntletHUDMovementScreen.KEY+ GauntletHUD.HudPresets.TOP_LEFT.ordinal(), "Left Top");
-        add(GauntletHUDMovementScreen.KEY+ GauntletHUD.HudPresets.TOP_RIGHT.ordinal(), "Right Top");
-        add(GauntletHUDMovementScreen.KEY+ GauntletHUD.HudPresets.BTM_LEFT.ordinal(), "Left Bottom");
-        add(GauntletHUDMovementScreen.KEY+ GauntletHUD.HudPresets.BTM_RIGHT.ordinal(), "Right Bottom");
-        add(GauntletHUDMovementScreen.KEY+ GauntletHUD.HudPresets.ABOVE_HOTBAR.ordinal(), "Above Hotbar");
         addGroup(ModItems.tab,"Dave's Potioneering");
 
-        ModItems.getAllItems().stream().filter(UmbrellaItem.class::isInstance)
-                .forEach(item -> {
-                    addItem(() -> item, "Umbrella");
-                    addDesc(item,"Keeps you from getting wet!");
-                });
         detailedDescriptions();
     }
 
     public void detailedDescriptions() {
-        addShiftDesc(ModBlocks.COMPOUND_BREWING_STAND,"An upgraded stand that eases the tedium of brewing.");
-        addHoldSDesc(ModBlocks.COMPOUND_BREWING_STAND,"Summary: Hold [Shift]");
-        addCtrlDescs(ModBlocks.COMPOUND_BREWING_STAND,"- Potions brew at 2x speed",
-                "- More ingredient slots",
-                "- Double potion output (6 potions)");
-        addHoldCDesc(ModBlocks.COMPOUND_BREWING_STAND,"Features: Hold [CTRL]");
-
-
+       
         addHoldSDesc(ModBlocks.REINFORCED_CAULDRON,"Summary: Hold [Shift]");
         addShiftDesc(ModBlocks.REINFORCED_CAULDRON,"A new cauldron that has some mechanical differences/benefits over the Vanilla one.");
 
@@ -77,26 +47,10 @@ public class ModLangProvider extends LanguageProvider {
                 "2. Next, throw the item/weapon/tool/arrows you would like to coat into the cauldron.",
                 "3. The liquid will sizzle and evaporate until there is nothing left but the newly coated item.");
 
-
-        addShiftDesc(ModItems.POTIONEER_GAUNTLET,"An alchemical weapon that utilizes potions and brute force in a Netherite knuckle sandwich!");
-        addHoldSDesc(ModItems.POTIONEER_GAUNTLET,"Summary: Hold [Shift]");
-        addHoldCDesc(ModItems.POTIONEER_GAUNTLET,"Controls: Hold [Ctrl]");
-        addCtrlDescs(ModItems.POTIONEER_GAUNTLET,"Shift+RMB - Ignites or extinguishes the internal blaze. (toggles potion usage)",
-                "Shift+Scroll wheel up/down - cycles through one of six potions injected into the gauntlet.",
-                "Shift+Middle Mouse Button - customize Gauntlet HUD");
-
-
-        addShiftDesc(ModBlocks.POTION_INJECTOR,"A workstation necessary for preparing the Potioneer Gauntlet.");
-        addHoldSDesc(ModBlocks.POTION_INJECTOR,"Summary: Hold [Shift]");
-        addCtrlDesc(ModBlocks.POTION_INJECTOR,"Use this block to inject Blaze Powder and Lingering Potions into the Potioneer Gauntlet.");
-        addHoldCDesc(ModBlocks.POTION_INJECTOR,"Functionality: Hold [Ctrl]");
         addTooltip("coated_with","Coated with:");
         addTooltip("spiked_with","Spiked with:");
         add("key.davespotioneering.open_config","Open Config");
         add("key.categories."+DavesPotioneering.MODID,"Dave's Potioneering");
-        addConfig("gauntlet_hud_x","The X Position of the gauntlet hud (left top). You should be using the in-game gui to change this though");
-        addConfig("gauntlet_hud_y","The y Position of the gauntlet hud (left top). You should be using the in-game gui to change this though");
-        addConfig("gauntlet_hud_preset","You shouldn't change this. Just don't");
     }
     protected void addConfig(String value,String trans) {
         add("config."+value,trans);
