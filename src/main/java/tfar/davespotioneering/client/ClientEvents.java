@@ -38,7 +38,6 @@ import tfar.davespotioneering.client.particle.FastDripParticle;
 import tfar.davespotioneering.client.particle.TintedSplashParticle;
 import tfar.davespotioneering.init.*;
 import tfar.davespotioneering.mixin.ParticleManagerAccess;
-import tfar.davespotioneering.net.PacketHandler;
 
 public class ClientEvents {
 
@@ -55,34 +54,6 @@ public class ClientEvents {
       //  event.register("fullbright", ModelLoader.INSTANCE);
     }
 
-    public static void onMouseInput(InputEvent.MouseButton e) {
-        Player player = Minecraft.getInstance().player;
-        if (player == null) return;
-        ItemStack held = player.getMainHandItem();
-        if (held.isEmpty()) return;
-        if (held.getItem() instanceof GauntletItem && player.isShiftKeyDown()) {
-            if (e.getButton() == 2) {
-                GauntletHUDMovementScreen.open();
-            }
-        }
-    }
-
-    public static void onMouseScroll(InputEvent.MouseScrollingEvent event) {
-        Player player = Minecraft.getInstance().player;
-        if (player == null) return;
-        ItemStack held = player.getMainHandItem();
-        if (held.isEmpty()) return;
-        if (held.getItem() instanceof GauntletItem && player.isShiftKeyDown()) {
-            if (event.getScrollDelta() == 1.f) {
-                PacketHandler.sendToServer(new C2SGauntletCyclePacket(true));
-                GauntletHUD.backwardCycle();
-            } else {
-                PacketHandler.sendToServer(new C2SGauntletCyclePacket(false));
-                GauntletHUD.forwardCycle();
-            }
-            event.setCanceled(true);
-        }
-    }
 
     public static void tooltips(ItemTooltipEvent e) {
         ItemStack stack = e.getItemStack();
@@ -98,25 +69,13 @@ public class ClientEvents {
         }
     }
 
-    private static void stackAdj1(ClientPlayerNetworkEvent.LoggingIn e) {
-        Util.setStackSize(Items.POTION, ModConfig.Server.potion_stack_size.get());
-        Util.setStackSize(Items.SPLASH_POTION, ModConfig.Server.splash_potion_stack_size.get());
-        Util.setStackSize(Items.LINGERING_POTION, ModConfig.Server.lingering_potion_stack_size.get());
-    }
-
     public static void doClientStuff(final FMLClientSetupEvent event) {
         MinecraftForge.EVENT_BUS.addListener(ClientEvents::tooltips);
         MinecraftForge.EVENT_BUS.addListener(ClientEvents::onMouseInput);
         MinecraftForge.EVENT_BUS.addListener(ClientEvents::onMouseScroll);
         MinecraftForge.EVENT_BUS.addListener(ClientEvents::playerTick);
         MinecraftForge.EVENT_BUS.addListener(ClientEvents::stackAdj1);
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.COMPOUND_BREWING_STAND, RenderType.cutoutMipped());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.POTION_INJECTOR,RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.REINFORCED_WATER_CAULDRON,RenderType.translucent());
-        MenuScreens.register(ModMenuTypes.ADVANCED_BREWING_STAND, AdvancedBrewingStandScreen::new);
-        MenuScreens.register(ModMenuTypes.ALCHEMICAL_GAUNTLET, PotionInjectorScreen::new);
-
-        BlockEntityRenderers.register(ModBlockEntityTypes.POTION_INJECTOR, PotionInjectorRenderer::new);
 
         Minecraft.getInstance().getBlockColors().register((state, reader, pos, index) -> {
             if (pos != null) {
@@ -127,37 +86,6 @@ public class ClientEvents {
             return 0xffffff;
         }, ModBlocks.REINFORCED_WATER_CAULDRON);
 
-        ItemProperties.register(ModItems.POTIONEER_GAUNTLET, new ResourceLocation("active"),
-                (ItemStack a, ClientLevel b, LivingEntity c,int i) -> a.hasTag() ? a.getTag().getBoolean("active") ? 1 : 0 : 0);
-
-        registerBlockingProperty(ModItems.WHITE_UMBRELLA);
-        registerBlockingProperty(ModItems.ORANGE_UMBRELLA);
-        registerBlockingProperty(ModItems.MAGENTA_UMBRELLA);
-        registerBlockingProperty(ModItems.LIGHT_BLUE_UMBRELLA);
-        registerBlockingProperty(ModItems.YELLOW_UMBRELLA);
-        registerBlockingProperty(ModItems.LIME_UMBRELLA);
-        registerBlockingProperty(ModItems.PINK_UMBRELLA);
-        registerBlockingProperty(ModItems.GRAY_UMBRELLA);
-        registerBlockingProperty(ModItems.LIGHT_GRAY_UMBRELLA);
-        registerBlockingProperty(ModItems.CYAN_UMBRELLA);
-        registerBlockingProperty(ModItems.PURPLE_UMBRELLA);
-        registerBlockingProperty(ModItems.BLUE_UMBRELLA);
-        registerBlockingProperty(ModItems.BROWN_UMBRELLA);
-        registerBlockingProperty(ModItems.GREEN_UMBRELLA);
-        registerBlockingProperty(ModItems.RED_UMBRELLA);
-        registerBlockingProperty(ModItems.BLACK_UMBRELLA);
-
-        registerBlockingProperty(ModItems.AGED_UMBRELLA);
-        registerBlockingProperty(ModItems.GILDED_UMBRELLA);
-    }
-
-    public static void overlay(RegisterGuiOverlaysEvent e) {
-        e.registerBelow(VanillaGuiOverlay.CHAT_PANEL.id(),DavesPotioneering.MODID,new GauntletHUD());
-    }
-
-    private static void registerBlockingProperty(Item item) {
-        ItemProperties.register(item, new ResourceLocation("blocking"),
-                (stack, world, entity,i) -> entity != null && entity.isUsingItem() && entity.getUseItem() == stack ? 1.0F : 0.0F);
     }
 
     public static void playerTick(TickEvent.PlayerTickEvent e) {
