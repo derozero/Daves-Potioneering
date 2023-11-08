@@ -13,7 +13,6 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import tfar.davespotioneering.DavesPotioneering;
-import tfar.davespotioneering.block.AdvancedBrewingStandBlock;
 import tfar.davespotioneering.block.LayeredReinforcedCauldronBlock;
 import tfar.davespotioneering.init.ModBlocks;
 
@@ -36,13 +35,6 @@ public class ModBlockstateProvider extends BlockStateProvider {
 
             return ConfiguredModel.builder().modelFile(modelFile).build();
         });
-
-        getVariantBuilder(ModBlocks.MAGIC_LECTERN).forAllStatesExcept(state -> {
-            Direction facing = state.getValue(LecternBlock.FACING);
-            ModelFile modelFile = models().getExistingFile(modLoc("block/magic_lectern"));
-            return ConfiguredModel.builder().modelFile(modelFile).rotationY((facing.get2DDataValue() + 3) % 4 * 90).build();
-        }, LecternBlock.HAS_BOOK, LecternBlock.POWERED);
-        blockstateFromExistingModel(ModBlocks.POTION_INJECTOR);
     }
 
     protected void blockstateFromExistingModel(Block block) {
