@@ -71,10 +71,7 @@ public class ClientEvents {
 
     public static void doClientStuff(final FMLClientSetupEvent event) {
         MinecraftForge.EVENT_BUS.addListener(ClientEvents::tooltips);
-        MinecraftForge.EVENT_BUS.addListener(ClientEvents::onMouseInput);
-        MinecraftForge.EVENT_BUS.addListener(ClientEvents::onMouseScroll);
         MinecraftForge.EVENT_BUS.addListener(ClientEvents::playerTick);
-        MinecraftForge.EVENT_BUS.addListener(ClientEvents::stackAdj1);
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.REINFORCED_WATER_CAULDRON,RenderType.translucent());
 
         Minecraft.getInstance().getBlockColors().register((state, reader, pos, index) -> {
