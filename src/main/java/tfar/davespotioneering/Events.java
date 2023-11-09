@@ -98,9 +98,6 @@ public class Events {
     public static void register() {
         MinecraftForge.EVENT_BUS.addListener(Events::milkCow);
         MinecraftForge.EVENT_BUS.addListener(Events::afterHit);
-
-        MinecraftForge.EVENT_BUS.addListener(Events::playerBrew);
-        MinecraftForge.EVENT_BUS.addListener(Events::canApplyEffect);
         MinecraftForge.EVENT_BUS.addListener(Events::effectColor);
     }
 }
