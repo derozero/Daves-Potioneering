@@ -59,9 +59,6 @@ public class DavesPotioneering {
         bus.addListener(ModDatagen::start);
         bus.addListener(this::register);
 
-        ModLoadingContext.get().registerConfig(Type.CLIENT, CLIENT_SPEC);
-        ModLoadingContext.get().registerConfig(Type.SERVER, SERVER_SPEC);
-
         // Register the setup method for modloading
         bus.addListener(this::setup);
         MinecraftForge.EVENT_BUS.addListener(this::stackAdj);
@@ -73,11 +70,6 @@ public class DavesPotioneering {
         }
     }
 
-    public static final ModConfig.Client CLIENT;
-    public static final ForgeConfigSpec CLIENT_SPEC;
-
-    public static final ModConfig.Server SERVER;
-    public static final ForgeConfigSpec SERVER_SPEC;
 
     private void register(RegisterEvent e) {
         superRegister(e, ModBlocks.class, Registry.BLOCK_REGISTRY, Block.class);
