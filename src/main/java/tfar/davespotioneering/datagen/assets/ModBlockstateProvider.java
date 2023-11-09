@@ -23,9 +23,7 @@ public class ModBlockstateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        brewingStand();
-
-
+        
         simpleBlock(ModBlocks.REINFORCED_CAULDRON,models().getExistingFile(modLoc("block/reinforced_cauldron_level0")));
 
         getVariantBuilder(ModBlocks.REINFORCED_WATER_CAULDRON).forAllStatesExcept(state -> {
