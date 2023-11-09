@@ -17,6 +17,7 @@ public class ModItems {
     public static final CreativeModeTab tab = new CreativeModeTab(DavesPotioneering.MODID) {
         @Override
         public ItemStack makeIcon() {
+            return new ItemStack(ModItems.REINFORCED_CAULDRON);
         }
     };
     
