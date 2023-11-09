@@ -3,7 +3,10 @@ package tfar.davespotioneering;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public class ModConfig {
-
+    public static class Client {
+        
+    }
+    
     public static class Server {
 
         public static ForgeConfigSpec.BooleanValue milk;
