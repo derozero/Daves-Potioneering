@@ -87,35 +87,7 @@ public class ClientEvents {
 
     public static void playerTick(TickEvent.PlayerTickEvent e) {
         Player player = e.player;
-        if (e.phase == TickEvent.Phase.END && e.side == LogicalSide.CLIENT && player.level.getGameTime() % ModConfig.Client.particle_drip_rate.get() == 0) {
-
-            ItemStack stack = player.getMainHandItem();
-
-            if (stack.getItem() instanceof TieredItem && PotionUtils.getPotion(stack) != Potions.EMPTY) {
-
-
-                ParticleOptions particleData = ModParticleTypes.FAST_DRIPPING_WATER;
-
-                Vec3 vec = player.position().add(0, +player.getBbHeight() / 2, 0);
-
-                double yaw = -Mth.wrapDegrees(player.getYRot());
-
-                double of1 = Math.random() * .60 + .15;
-                double of2 = .40 + Math.random() * .10;
-
-
-                double z1 = Math.cos(yaw * Math.PI / 180) * of1;
-                double x1 = Math.sin(yaw * Math.PI / 180) * of1;
-
-                double z2 = Math.cos((yaw + 270) * Math.PI / 180) * of2;
-                double x2 = Math.sin((yaw + 270) * Math.PI / 180) * of2;
-
-                vec = vec.add(x1 + x2, 0, z1 + z2);
-
-                int color = PotionUtils.getColor(stack);
-                spawnFluidParticle(Minecraft.getInstance().level, vec, particleData, color);
-            }
-        }
+        
     }
 
     private static void spawnFluidParticle(ClientLevel world, Vec3 blockPosIn, ParticleOptions particleDataIn, int color) {
