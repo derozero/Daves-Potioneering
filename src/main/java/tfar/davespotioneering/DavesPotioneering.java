@@ -39,7 +39,6 @@ import tfar.davespotioneering.datagen.ModDatagen;
 import tfar.davespotioneering.effect.PotionIngredient;
 import tfar.davespotioneering.init.*;
 import tfar.davespotioneering.mixin.BlockEntityTypeAcces;
-import tfar.davespotioneering.net.PacketHandler;
 
 import java.lang.reflect.Field;
 import java.util.HashSet;
