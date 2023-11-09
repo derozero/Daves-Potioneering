@@ -131,6 +131,10 @@ public class DavesPotioneering {
 
     }
 
+    private void stackAdj(ServerStartingEvent e) {
+    //please work if i add this in
+    }
+
     protected static void strongRecipe(Potion potion, Potion strong) {
         BrewingRecipeRegistry.addRecipe(PotionIngredient.create(
                         PotionUtils.setPotion(new ItemStack(Items.POTION), potion)),
