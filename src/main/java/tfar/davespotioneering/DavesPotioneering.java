@@ -70,7 +70,6 @@ public class DavesPotioneering {
             bus.addListener(ClientEvents::doClientStuff);
             bus.addListener(ClientEvents::registerLoader);
             bus.addListener(ClientEvents::particle);
-            bus.addListener(ClientEvents::overlay);
         }
     }
 
@@ -80,20 +79,10 @@ public class DavesPotioneering {
     public static final ModConfig.Server SERVER;
     public static final ForgeConfigSpec SERVER_SPEC;
 
-    static {
-        final Pair<ModConfig.Client, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(ModConfig.Client::new);
-        CLIENT_SPEC = specPair.getRight();
-        CLIENT = specPair.getLeft();
-        final Pair<ModConfig.Server, ForgeConfigSpec> specPair2 = new ForgeConfigSpec.Builder().configure(ModConfig.Server::new);
-        SERVER_SPEC = specPair2.getRight();
-        SERVER = specPair2.getLeft();
-    }
-
     private void register(RegisterEvent e) {
         superRegister(e, ModBlocks.class, Registry.BLOCK_REGISTRY, Block.class);
         superRegister(e, ModItems.class, Registry.ITEM_REGISTRY, Item.class);
         superRegister(e, ModBlockEntityTypes.class, Registry.BLOCK_ENTITY_TYPE_REGISTRY, BlockEntityType.class);
-        superRegister(e, ModMenuTypes.class, Registry.MENU_REGISTRY, MenuType.class);
         superRegister(e, ModEffects.class, Registry.MOB_EFFECT_REGISTRY, MobEffect.class);
         superRegister(e, ModParticleTypes.class, Registry.PARTICLE_TYPE_REGISTRY, ParticleType.class);
         superRegister(e, ModPotions.class, Registry.POTION_REGISTRY, Potion.class);
@@ -136,10 +125,7 @@ public class DavesPotioneering {
         strongRecipe(Potions.INVISIBILITY, ModPotions.STRONG_INVISIBILITY);
 
         Set<Block> newSet = new HashSet<>(((BlockEntityTypeAcces) BlockEntityType.LECTERN).getValidBlocks());
-        newSet.add(ModBlocks.MAGIC_LECTERN);
         ((BlockEntityTypeAcces) BlockEntityType.LECTERN).setValidBlocks(newSet);
-
-        PacketHandler.registerMessages();
 
         ModCauldronInteractions.bootStrap();
 
