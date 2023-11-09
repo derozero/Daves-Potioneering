@@ -12,11 +12,4 @@ import tfar.davespotioneering.Events;
 
 @Mixin(ServerGamePacketListenerImpl.class)
 public class ServerPlayNetHandlerMixin {
-
-    @Shadow public ServerPlayer player;
-
-    @Inject(method = "handleSetCarriedItem",at = @At(value = "INVOKE",target = "Lnet/minecraft/server/level/ServerPlayer;resetLastActionTime()V"))
-    private void heldItemChange(ServerboundSetCarriedItemPacket itemChangePacket, CallbackInfo ci) {
-        Events.heldItemChangeEvent(this.player);
-    }
 }
