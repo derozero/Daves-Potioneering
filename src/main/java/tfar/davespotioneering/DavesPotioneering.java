@@ -65,14 +65,12 @@ public class DavesPotioneering {
         // Register the setup method for modloading
         bus.addListener(this::setup);
         MinecraftForge.EVENT_BUS.addListener(this::stackAdj);
-        MinecraftForge.EVENT_BUS.addListener(GauntletItem::tickCooldowns);
         if (FMLEnvironment.dist.isClient()) {
             // Register the doClientStuff method for modloading
             bus.addListener(ClientEvents::doClientStuff);
             bus.addListener(ClientEvents::registerLoader);
             bus.addListener(ClientEvents::particle);
             bus.addListener(ClientEvents::overlay);
-            bus.addListener(GauntletHUD::bake);
         }
     }
 
