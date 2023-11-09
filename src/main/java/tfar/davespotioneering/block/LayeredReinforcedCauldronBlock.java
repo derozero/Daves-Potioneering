@@ -36,7 +36,6 @@ import tfar.davespotioneering.blockentity.ReinforcedCauldronBlockEntity;
 import tfar.davespotioneering.init.ModBlocks;
 import tfar.davespotioneering.init.ModPotions;
 import tfar.davespotioneering.init.ModSoundEvents;
-import tfar.davespotioneering.item.GauntletItem;
 
 import javax.annotation.Nullable;
 import java.util.List;
