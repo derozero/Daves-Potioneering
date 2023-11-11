@@ -18,6 +18,6 @@ import tfar.davespotioneering.Util;
 import tfar.davespotioneering.duck.BrewingStandDuck;
 
 @Mixin(BrewingStandBlockEntity.class)
-public class BrewingStandBlockEntityMixin extends BlockEntity implements BrewingStandDuck {
+public class BrewingStandBlockEntityMixin {
 
     }
