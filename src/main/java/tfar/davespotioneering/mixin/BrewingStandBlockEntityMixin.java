@@ -21,4 +21,3 @@ import tfar.davespotioneering.duck.BrewingStandDuck;
 public class BrewingStandBlockEntityMixin extends BlockEntity implements BrewingStandDuck {
 
     }
-}
