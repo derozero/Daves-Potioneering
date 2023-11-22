@@ -95,9 +95,9 @@ public class DavesPotioneering {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        Util.setStackSize(Items.POTION, 16);
-        Util.setStackSize(Items.SPLASH_POTION, 4);
-        Util.setStackSize(Items.LINGERING_POTION, 4);
+        Util.setStackSize(Items.POTION, 1);
+        Util.setStackSize(Items.SPLASH_POTION, 1);
+        Util.setStackSize(Items.LINGERING_POTION, 1);
 
         Events.register();
 
